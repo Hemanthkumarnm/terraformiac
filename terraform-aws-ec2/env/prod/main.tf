@@ -4,6 +4,6 @@ module "ec2_instance" {
   instance_type = "t2.micro"
   #subnet_id     = "subnet-abcdef"  # Replace with a valid Subnet ID
   key_name      = "my-key"
-  instance_name = "dev-instance"
+  instance_name = "jenkins-instance"
 }
 
