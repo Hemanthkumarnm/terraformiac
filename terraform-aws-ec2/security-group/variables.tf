@@ -37,7 +37,7 @@ variable "egress_rules" {
 }
 
 variable "tags" {
-  description = "A map of tags to add to all resources"
+  description = "Tags to apply to the security group"
   type        = map(string)
   default     = {}
 } 

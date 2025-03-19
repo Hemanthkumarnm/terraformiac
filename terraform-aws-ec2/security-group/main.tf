@@ -24,10 +24,5 @@ resource "aws_security_group" "this" {
     }
   }
 
-  tags = merge(
-    {
-      Name = var.security_group_name
-    },
-    var.tags
-  )
-} 
+  tags = var.tags
+}

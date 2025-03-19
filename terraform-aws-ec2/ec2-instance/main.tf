@@ -20,7 +20,7 @@ module "security_group" {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
-      cidr_blocks = ["65.1.123.78/32"]
+      cidr_blocks = [var.allowed_ssh_ip]
     }
   ]
 
@@ -39,6 +39,8 @@ module "security_group" {
 }
 
 resource "aws_instance" "this" {
+  count = var.instance_count
+
   ami           = var.ami
   instance_type = var.instance_type
   subnet_id     = var.subnet_id
@@ -46,8 +48,13 @@ resource "aws_instance" "this" {
 
   vpc_security_group_ids = [module.security_group.security_group_id]
 
-  tags = {
-    Name = var.instance_name
-  }
+  tags = merge(
+    {
+      Name = var.instance_count > 1 ? (
+        length(var.instance_names) > 0 ? var.instance_names[count.index] : "${var.instance_name}-${count.index + 1}"
+      ) : var.instance_name
+    },
+    var.additional_tags
+  )
 }
 
