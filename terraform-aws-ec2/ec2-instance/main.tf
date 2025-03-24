@@ -1,6 +1,3 @@
-#################
-# EC2 INSTANCE  #
-#################
 
 # Get VPC ID from subnet
 data "aws_subnet" "selected" {
