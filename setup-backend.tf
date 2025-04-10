@@ -50,6 +50,3 @@ resource "aws_dynamodb_table" "terraform_locks" {
     Region      = "ap-south-1"
   }
 }
-
-# Get current AWS account ID
-data "aws_caller_identity" "current" {}
